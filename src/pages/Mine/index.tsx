@@ -1,6 +1,6 @@
 import React from 'react';
 import { decrement, increment, asyncIncrement } from './model/mine';
-import { useAppSelector, useAppDispatch } from '@/src/utils/typedHooks';
+import { useAppSelector, useAppDispatch } from '@/src/hooks/typedHooks';
 
 const Mine: React.FC = () => {
   // The `state` arg is correctly typed as `RootState` already

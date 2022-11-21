@@ -7,7 +7,25 @@ const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const postcssPxToViewport = require('postcss-px-to-viewport');
 const smp = new SpeedMeasurePlugin();
+
+const postCssOptions = {
+  // Necessary for external CSS imports to work
+  // https://github.com/facebook/create-react-app/issues/2677
+  ident: 'postcss',
+  config: false,
+  plugins: [
+    postcssPxToViewport({
+      viewportWidth: 375, // (Number) The width of the viewport.
+      unitPrecision: 3, // (Number) The decimal numbers to allow the REM units to grow to.
+      viewportUnit: 'vw', // (String) Expected units.
+      selectorBlackList: ['.ignore-'], // (Array) The selectors to ignore and leave as px.
+      minPixelValue: 1, // (Number) Set the minimum pixel value to replace.
+      mediaQuery: false, // (Boolean) Allow px to be converted in media queries.
+    }),
+  ],
+};
 
 const config = {
   entry: ['./src/index.tsx'],
@@ -52,7 +70,13 @@ const config = {
               importLoaders: 1,
             },
           },
-          'postcss-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: postCssOptions,
+            },
+          },
+          // 'postcss-loader',
         ],
         exclude: /\.module\.css$/,
       },
@@ -67,13 +91,29 @@ const config = {
               modules: true,
             },
           },
-          'postcss-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: postCssOptions,
+            },
+          },
+          // 'postcss-loader',
         ],
         include: /\.module\.css$/,
       },
       {
         test: /\.less$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: postCssOptions,
+            },
+          },
+        ],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -114,7 +154,7 @@ const config = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'public/index.html',
+      template: 'src/assets/index.html',
     }),
     // css提取
     new MiniCssExtractPlugin({
@@ -135,7 +175,6 @@ const config = {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
       '@/src': path.resolve(__dirname, 'src'),
-      '@/public': path.resolve(__dirname, 'public'),
       '@/config': path.resolve(__dirname, 'config'),
     },
   },
