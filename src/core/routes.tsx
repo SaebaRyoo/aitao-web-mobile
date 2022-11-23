@@ -11,22 +11,40 @@ export type RouteType = {
   children?: RouteType[];
 };
 
+const Search = () => <div>test</div>;
+
 const routes: RouteType[] = [
   {
     path: '/',
     header: {
       left: '',
-      middle: 'search',
+      middle: <Search />,
       right: 'chat',
     },
     bottom: true,
     component: React.lazy(() => import('@/src/pages/Home/index')),
   },
   {
+    path: '/classify',
+    header: {
+      middle: '分类',
+    },
+    bottom: true,
+    component: React.lazy(() => import('@/src/pages/Classify')),
+  },
+  {
+    path: '/shopping-cart',
+    header: {
+      middle: '购物车',
+    },
+    bottom: true,
+    component: React.lazy(() => import('@/src/pages/ShoppingCart')),
+  },
+  {
     path: '/mine',
     header: {
       left: '',
-      middle: 'search',
+      middle: '我的',
       right: 'chat',
     },
     bottom: true,
@@ -34,6 +52,9 @@ const routes: RouteType[] = [
     children: [
       {
         path: '/mine/bus',
+        header: {
+          middle: '汽车',
+        },
         component: React.lazy(() => import('@/src/pages/Mine/Bus/index')),
       },
       {

@@ -1,44 +1,43 @@
 import React from 'react';
 import { Badge, TabBar } from 'antd-mobile';
-
-import {
-  AppOutline,
-  MessageOutline,
-  MessageFill,
-  UnorderedListOutline,
-  UserOutline,
-} from 'antd-mobile-icons';
+import { useNavigate } from 'react-router-dom';
 
 const BottomBar = () => {
+  const navigate = useNavigate();
+  const pathname = window.location.pathname;
+
   const tabs = [
     {
-      key: 'home',
+      key: '/',
       title: '首页',
-      icon: <AppOutline />,
+      icon: <i className="iconfont icon-home icon-fz" />,
       badge: Badge.dot,
     },
     {
-      key: 'todo',
+      key: '/classify',
       title: '分类',
-      icon: <UnorderedListOutline />,
-      badge: '5',
+      icon: <i className="iconfont icon-fenleiclassify icon-fz" />,
     },
     {
-      key: 'message',
+      key: '/shopping-cart',
       title: '购物车',
-      icon: (active: boolean) =>
-        active ? <MessageFill /> : <MessageOutline />,
+      icon: <i className="iconfont icon-publishgoods_fill icon-fz" />,
       badge: '99+',
     },
     {
-      key: 'personalCenter',
+      key: '/mine',
       title: '我的',
-      icon: <UserOutline />,
+      icon: <i className="iconfont icon-mine2 icon-fz" />,
     },
   ];
 
   return (
-    <TabBar>
+    <TabBar
+      activeKey={pathname}
+      onChange={(key: string) => {
+        navigate(key);
+      }}
+    >
       {tabs.map((item) => (
         <TabBar.Item
           key={item.key}

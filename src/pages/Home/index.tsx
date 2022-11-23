@@ -19,7 +19,7 @@ const Home: React.FC = () => {
       ></span>
       <div>Hello william 1 + 2 = {sum(1, 2)}</div>
       <img className={styles.img} src={house} alt="" />
-      <img src={img1} alt="" />
+      {/* <img src={img1} alt="" /> */}
       <button onClick={handleClick}>请求数据</button>
     </div>
   );

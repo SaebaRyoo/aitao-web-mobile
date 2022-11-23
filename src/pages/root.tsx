@@ -1,6 +1,7 @@
 import React, { ReactElement, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import routes, { RouteType } from '@/src/core/routes';
+import Layout from '@/src/components/layout';
 
 const Loading: React.FC = () => <div>loading.....</div>;
 
@@ -12,7 +13,9 @@ const CreateHasChildrenRoute = (route: RouteType) => {
         index
         element={
           <Suspense fallback={<Loading />}>
-            <route.component />
+            <Layout>
+              <route.component />
+            </Layout>
           </Suspense>
         }
       />
@@ -29,7 +32,9 @@ const CreateNoChildrenRoute = (route: RouteType) => {
       path={route.path}
       element={
         <Suspense fallback={<Loading />}>
-          <route.component />
+          <Layout>
+            <route.component />
+          </Layout>
         </Suspense>
       }
     />

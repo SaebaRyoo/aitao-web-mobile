@@ -8,9 +8,7 @@ const App: React.FC = () => {
   return (
     <React.StrictMode>
       <Provider store={store}>
-        <Layout>
-          <Root />
-        </Layout>
+        <Root />
       </Provider>
     </React.StrictMode>
   );

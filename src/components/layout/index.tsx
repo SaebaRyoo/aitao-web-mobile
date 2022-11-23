@@ -15,7 +15,6 @@ function findRoute(
   let route: RouteType | undefined;
   function dfs(routes: RouteType[]) {
     if (!routes || routes.length < 1) {
-      console.log('没有数据了，推到上一个执行栈:');
       return;
     }
     for (let i = 0; i < routes.length; i++) {
@@ -46,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className={styles['aitao-layout']}>
       {header && (
         <div className={styles['aitao-layout-header']}>
-          <HeaderBar />
+          <HeaderBar header={header} />
         </div>
       )}
       <div className={styles['aitao-layout-content']}>{children}</div>
