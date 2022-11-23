@@ -97,7 +97,6 @@ const config = {
               postcssOptions: postCssOptions,
             },
           },
-          // 'postcss-loader',
         ],
         include: /\.module\.css$/,
       },
@@ -121,7 +120,6 @@ const config = {
         generator: {
           filename: 'fonts/[hash:8][ext][query]',
         },
-        // use: 'file-loader',
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/,
@@ -135,18 +133,6 @@ const config = {
             maxSize: 4 * 1024, // 4kb
           },
         },
-
-        // use it before webpack5
-        // use: [
-        //   {
-        //     loader: 'url-loader',
-        //     options: {
-        //       // 文件内容的hash,md5生成
-        //       name: 'img/[name].[hash:8].[ext]',
-        //       limit: 10240,
-        //     },
-        //   },
-        // ],
       },
     ],
   },

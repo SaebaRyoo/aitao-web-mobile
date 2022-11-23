@@ -1,10 +1,11 @@
-import React, { Suspense } from 'react';
+import React, { ReactElement, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import routes from '@/src/core/routes';
+import routes, { RouteType } from '@/src/core/routes';
 
 const Loading: React.FC = () => <div>loading.....</div>;
 
-const CreateHasChildrenRoute = (route: any) => {
+// 创建一个有字节点的Route
+const CreateHasChildrenRoute = (route: RouteType) => {
   return (
     <Route key={route.path} path={route.path}>
       <Route
@@ -15,12 +16,13 @@ const CreateHasChildrenRoute = (route: any) => {
           </Suspense>
         }
       />
-      {RouteCreator(route.children)}
+      {RouteCreator(route.children ? route.children : [])}
     </Route>
   );
 };
 
-const CreateNoChildrenRoute = (route: any) => {
+// 创建一个没有子节点的Route
+const CreateNoChildrenRoute = (route: RouteType) => {
   return (
     <Route
       key={route.path}
@@ -34,13 +36,15 @@ const CreateNoChildrenRoute = (route: any) => {
   );
 };
 
-const RouteCreator = (routes: any) => {
-  return routes.map((route: any) => {
+const RouteCreator = (routes: RouteType[]) => {
+  return routes?.map((route: RouteType) => {
+    let element: ReactElement | null = null;
     if (route.children && !!route.children.length) {
-      return CreateHasChildrenRoute(route);
+      element = CreateHasChildrenRoute(route);
     } else {
-      return CreateNoChildrenRoute(route);
+      element = CreateNoChildrenRoute(route);
     }
+    return element;
   });
 };
 

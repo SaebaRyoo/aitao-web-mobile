@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { LazyExoticComponent, ReactElement } from 'react';
 
-const routes = [
+export type RouteType = {
+  path: string;
+  header?: {
+    [key: string]: string | ReactElement;
+  };
+  headerName?: string;
+  bottom?: boolean;
+  component: LazyExoticComponent<React.FC>;
+  children?: RouteType[];
+};
+
+const routes: RouteType[] = [
   {
     path: '/',
+    header: {
+      left: '',
+      middle: 'search',
+      right: 'chat',
+    },
+    bottom: true,
     component: React.lazy(() => import('@/src/pages/Home/index')),
   },
   {
     path: '/mine',
+    header: {
+      left: '',
+      middle: 'search',
+      right: 'chat',
+    },
+    bottom: true,
     component: React.lazy(() => import('@/src/pages/Mine/index')),
     children: [
       {

@@ -1,4 +1,3 @@
-import Header from '@/src/components/header';
 import { sum } from '@/src/utils/sum';
 import React from 'react';
 import { goodsList } from '@/src/service/goods';
@@ -14,12 +13,14 @@ const Home: React.FC = () => {
   return (
     <div>
       Home
-      <Header title="header" />
+      <span
+        className="iconfont icon-shoucang"
+        style={{ color: '#ff0000' }}
+      ></span>
       <div>Hello william 1 + 2 = {sum(1, 2)}</div>
       <img className={styles.img} src={house} alt="" />
       <img src={img1} alt="" />
       <button onClick={handleClick}>请求数据</button>
-      <i className="iconfont icon-goods" style={{ color: '#ff0000' }}></i>
     </div>
   );
 };

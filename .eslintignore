@@ -2,6 +2,7 @@ dist
 .eslintrc.js
 webpack.*
 postcss.*
+src/assets
 **/*.test.js
 commitlint.config.js
 dll
