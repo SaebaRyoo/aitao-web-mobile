@@ -132,6 +132,8 @@ const Scroll: React.FC<ScrollProps> = ({
     return () => {
       bs?.off('pullingDown');
       bs?.off('pullingUp');
+      bs?.off('enterThreshold');
+      bs?.off('leaveThreshold');
     };
   }, [bs]);
 

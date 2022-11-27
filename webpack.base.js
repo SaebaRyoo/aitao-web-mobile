@@ -76,7 +76,6 @@ const config = {
               postcssOptions: postCssOptions,
             },
           },
-          // 'postcss-loader',
         ],
         exclude: /\.module\.css$/,
       },
@@ -105,14 +104,36 @@ const config = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'less-loader',
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: postCssOptions,
             },
           },
+          'less-loader',
         ],
+        exclude: /\.(module|m)\.less$/,
+      },
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: postCssOptions,
+            },
+          },
+          'less-loader',
+        ],
+        include: /\.(module|m)\.less$/,
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
