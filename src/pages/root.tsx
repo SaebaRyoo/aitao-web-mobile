@@ -1,9 +1,25 @@
 import React, { ReactElement, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Space, SpinLoading } from 'antd-mobile';
+
 import routes, { RouteType } from '@/src/core/routes';
 import Layout from '@/src/components/layout';
 
-const Loading: React.FC = () => <div>loading.....</div>;
+const Loading: React.FC = () => (
+  <Space
+    direction="horizontal"
+    wrap
+    block
+    style={{
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      marginTop: '64px',
+    }}
+  >
+    <SpinLoading color="primary" style={{ '--size': '48px' }} />
+  </Space>
+);
 
 // 创建一个有字节点的Route
 const CreateHasChildrenRoute = (route: RouteType) => {
