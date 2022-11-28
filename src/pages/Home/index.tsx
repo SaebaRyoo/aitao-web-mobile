@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { goodsList } from '@/src/service/goods';
-import { List } from 'antd-mobile';
 import styles from './index.module.less';
 import Scroll from '@/src/components/scroll';
+import Goods from './goods';
+import Channel from './channel';
+import SecKill from './seckill';
 
 function getNextData() {
   const ret: string[] = [];
@@ -35,11 +37,11 @@ const Home: React.FC = () => {
         onPulldown={handlePullDown}
         wrapClassName={styles['aitao-home-scroll-wrap']}
       >
-        <List>
-          {data.map((item, index) => (
-            <List.Item key={index}>{item}</List.Item>
-          ))}
-        </List>
+        <>
+          <Channel />
+          <SecKill />
+          <Goods data={data} />
+        </>
       </Scroll>
     </div>
   );
