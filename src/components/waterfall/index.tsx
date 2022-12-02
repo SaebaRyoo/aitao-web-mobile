@@ -35,7 +35,7 @@ const Waterfall: React.FC<WaterfallProps> = ({
 
   useEffect(() => {
     separateData(data);
-  }, []);
+  }, [data.length]);
 
   return (
     <div className={styles['aitao-component-waterfall-wrap']}>

@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import styles from './index.m.less';
+import { Image } from 'antd-mobile';
 
 export interface WaterFallItemProps {
   data: {
@@ -12,9 +13,10 @@ const WaterFallItem: React.FC<WaterFallItemProps> = ({
 }): ReactElement => {
   return (
     <div key={data.key} className={styles['aitao-component-waterfall-card']}>
-      <img
+      <Image
         className={styles['aitao-component-waterfall-card-img']}
         src={data.img}
+        lazy={true}
       />
       <div className={styles['aitao-component-waterfall-card-info']}>
         <p className={styles['aitao-component-waterfall-card-text-title']}>

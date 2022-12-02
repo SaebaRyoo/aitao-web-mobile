@@ -49,6 +49,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
       )}
       <div className={styles['aitao-layout-content']}>{children}</div>
+      {/* {children} */}
       {bottom && (
         <div className={styles['aitao-layout-bottom']}>
           <BottomBar />

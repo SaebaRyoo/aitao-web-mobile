@@ -1,14 +1,23 @@
 .aitao-layout {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
   .aitao-layout-header {
     height: 46px;
+    background-color: #fff;
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 99;
+  }
+  .aitao-layout-content {
+    flex: 1;
   }
   .aitao-layout-bottom {
-    position: absolute;
+    position: sticky;
     left: 0;
-    bottom: 0;
+    bottom: -2px;
     width: 100%;
     height: 50px;
   }
