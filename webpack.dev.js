@@ -18,7 +18,8 @@ const config = {
       // publicPath: '/',
     },
     proxy: {
-      '/api': 'http://127.0.0.1:8001',
+      // '/api': 'http://127.0.0.1:8001', // 本地
+      '/api': 'http://120.26.69.48:8001', // server
     },
     compress: true,
     port: 8080,

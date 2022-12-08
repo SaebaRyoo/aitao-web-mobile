@@ -1,5 +1,16 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
+type Opts = {
+  method: 'get' | 'post' | 'delete' | 'put' | 'patch';
+  [key: string]: any;
+};
+
+interface IRequest {
+  <T extends IRequest = any>(url: string, opts: Opts): Promise<
+    AxiosResponse<T>
+  >;
+  <T = any>(url: string, opts: Opts): Promise<T>;
+}
 // const { REACT_APP_ENV } = process.env;
 const config: any = {
   // baseURL: 'http://127.0.0.1:8001',
@@ -19,13 +30,7 @@ const InstanceMaper = {
   patch: instance.patch,
 };
 
-const request = (
-  url: string,
-  opts: {
-    method: 'get' | 'post' | 'delete' | 'put' | 'patch';
-    [key: string]: any;
-  }
-) => {
+const request: IRequest = (url: string, opts: Opts) => {
   instance.interceptors.request.use(
     function (config) {
       // Do something before request is sent

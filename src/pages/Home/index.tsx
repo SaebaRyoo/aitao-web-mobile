@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { goodsList } from '@/src/service/goods';
+import { goodsList } from '@/src/service/goods/goods';
 import styles from './index.module.less';
 import Goods from './goods';
 import Channel from './channel';

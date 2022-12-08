@@ -5,9 +5,9 @@ import App from './App';
 import './styles.less';
 import '@/src/assets/fonts/iconfont';
 import './assets/fonts/iconfont.css';
-import VConsole from 'vconsole';
+// import VConsole from 'vconsole';
 
-// or init with options
-new VConsole({ theme: 'dark' });
+// // or init with options
+// new VConsole({ theme: 'dark' });
 const container: HTMLElement = document.getElementById('app') as HTMLElement;
 createRoot(container).render(<App />);

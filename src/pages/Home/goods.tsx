@@ -1,5 +1,5 @@
 import React from 'react';
-import { goodsList } from '@/src/service/goods';
+import { goodsList } from '@/src/service/goods/goods';
 import styles from './goods.m.less';
 import Waterfall from '@/src/components/waterfall';
 import WaterfallItem from '@/src/components/waterfall/WaterfallItem';

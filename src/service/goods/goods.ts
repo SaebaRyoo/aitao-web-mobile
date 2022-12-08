@@ -1,5 +1,6 @@
-import request from '../core/request';
+import request from '../../core/request';
 
+// 商品列表
 export async function goodsList(
   params: {
     // query
