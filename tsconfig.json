@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
+    "types": ["node", "jest"],
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
@@ -8,7 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "module": "ESNext",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "ESNext",
     "allowJs": true,
     "jsx": "react",
     "baseUrl": ".",

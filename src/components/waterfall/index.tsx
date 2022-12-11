@@ -1,6 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import styles from './index.m.less';
-import { WaterFallItemProps } from './WaterfallItem';
 
 type dataType = {
   data: {

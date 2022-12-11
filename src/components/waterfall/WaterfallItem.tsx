@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import styles from './index.m.less';
 import { Image } from 'antd-mobile';
 

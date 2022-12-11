@@ -6,10 +6,18 @@
 }
 .content {
   flex: 1;
+  overflow: hidden;
+  overflow-y: scroll;
+  // 滚动条隐藏
+  scrollbar-width: none; // firefox
+  &::-webkit-scrollbar {
+    // chrome safari
+    display: none;
+  }
 }
 
 .block {
-  // width: 100%;
+  width: 100%;
   margin-bottom: 12px;
   &:last-of-type {
     padding-bottom: 32px;
@@ -30,6 +38,12 @@
     overflow: hidden;
     overflow-x: scroll;
     overflow-y: hidden;
+    // 滚动条隐藏
+    scrollbar-width: none; // firefox
+    &::-webkit-scrollbar {
+      // chrome safari
+      display: none;
+    }
 
     & > div {
       width: 80px;
