@@ -1,12 +1,12 @@
 {
     "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "modules": false
-        }
-      ],
-      "@babel/preset-react"
+      ["@babel/preset-env", { "targets": {"node": "current"} }],
+      ["@babel/preset-react",{ "runtime": "automatic" }], // 自动导入react
+      "@babel/preset-typescript"
     ],
-    "plugins": ["@babel/plugin-syntax-dynamic-import"]
+    "plugins": [
+      "@babel/plugin-syntax-dynamic-import",
+      // 按需加载antd-mobile
+      ["import", { "libraryName": "antd-mobile", "libraryDirectory": "es/components", "style": false}]
+    ]
   }

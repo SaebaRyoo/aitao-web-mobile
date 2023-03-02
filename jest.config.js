@@ -15,19 +15,16 @@ module.exports = {
   // cacheDirectory: "/private/var/folders/q_/gn9lqq814s98nchhkcy380mw0000gn/T/jest_dx",
 
   // Automatically clear mock calls, instances, contexts and results before every test
-  // 在每次测试前自动清除模拟的上下文 默认false
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
-  // 是否开启覆盖率
-  collectCoverage: true,
+  // collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  // collectCoverageFrom: undefined,
+  collectCoverageFrom: ['src/**/*.{ts,tsx,js,jsx}', '!src/**/*.d.ts'],
 
   // The directory where Jest should output its coverage files
-  // 默认：undefined，生成的覆盖率文件的文件位置
-  coverageDirectory: 'coverage',
+  // coverageDirectory: undefined,
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -35,8 +32,7 @@ module.exports = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  // babel（默认）/v8，指示应使用哪个提供程序来检测代码以进行覆盖
-  coverageProvider: 'v8',
+  // coverageProvider: "babel",
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -92,14 +88,13 @@ module.exports = {
   //   "node"
   // ],
 
-  // The root directory that Jest should scan for tests and modules within
-  // rootDir: undefined,
-
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
     // 支持webpack的resolve.alias
     // key是各个alias，然后将通过正则将 别名 中的 相对路径 替换到$1占位符中
     '^@/(.*)$': '<rootDir>/$1',
+    '.(css|less|scss|sass)$': 'identity-obj-proxy', // 对css文件使用identity-obj-proxy进行代理,该包的作用是将对象的访问直接返回对应的字符串，比如 styles.title 将会返回 title 字符串
+    '\\.(png|jpg|jpeg|gif|ttf|eot|svg)$': '<rootDir>/src/__mocks__/fileMock.js', // 对资源文件进行mock
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -112,7 +107,7 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  preset: 'ts-jest',
+  // preset: undefined,
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -132,6 +127,9 @@ module.exports = {
   // Automatically restore mock state and implementation before every test
   // restoreMocks: false,
 
+  // The root directory that Jest should scan for tests and modules within
+  // rootDir: undefined,
+
   // A list of paths to directories that Jest should use to search for files in
   // roots: [
   //   "<rootDir>"
@@ -144,7 +142,7 @@ module.exports = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -153,7 +151,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: 'jest-environment-jsdom',
+  testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -182,7 +180,11 @@ module.exports = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  transform: {
+    '^.+.(js|jsx|ts|tsx)$': 'babel-jest', // 给jest添加一个转换器
+    // "^.+\.(js|jsx|ts|tsx)$": "esbuild-jest", // 基于 esbuild 来实现的 jest 转译工具,可以提升编译性能
+    // "^.+\\.svg$": "<rootDir>/__mocks__/svgTransform.js" // jest无法识别svg，需要对svg进行mock
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [

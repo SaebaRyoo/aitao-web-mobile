@@ -5,10 +5,13 @@ describe('sleep', () => {
   beforeAll(() => {
     oldTime = Date.now();
   });
-  it('睡眠500ms再输出一个值', async () => {
-    await sleep(500);
+  it('wait 100ms before process the test', async () => {
+    const test = jest.fn();
+    await sleep(100);
+    test();
     const now = Date.now();
 
-    expect(now - oldTime >= 500).toBeTruthy();
+    expect(now - oldTime >= 100).toBeTruthy();
+    expect(test).toBeCalledTimes(1);
   });
 });

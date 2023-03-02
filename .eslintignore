@@ -7,3 +7,4 @@ src/assets
 **/*.test.js
 commitlint.config.js
 dll
+src/__mocks__/fileMock.js

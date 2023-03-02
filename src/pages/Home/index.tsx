@@ -7,7 +7,6 @@ import SecKill from './seckill';
 import { InfiniteScroll, PullToRefresh } from 'antd-mobile';
 import { PullStatus } from 'antd-mobile/es/components/pull-to-refresh';
 import fakeData from '@/src/components/waterfall/data';
-import { SingleEntryPlugin } from 'webpack';
 import { sleep } from '@/src/utils/sleep';
 
 const statusRecord: Record<PullStatus, string> = {
